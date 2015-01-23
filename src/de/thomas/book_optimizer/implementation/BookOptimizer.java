@@ -4,9 +4,8 @@ import java.util.Arrays;
 
 public class BookOptimizer {
 
-	//Needs array with length 5 as input
-	//In bookDivision[0] should be the number of book sets with size 5,
-	//in bookDivision[1] the number of book sets with size 4, etc.
+
+	//bookDivision[i] has to contain number of book sets with size 5 - i 
 	public static double getPrice(int[] bookDivision) {
 		double[] discount = {0.75d, 0.8d, 0.9d, 0.95d, 1.0d };
 		double amount = 0d;
@@ -18,12 +17,10 @@ public class BookOptimizer {
 		return amount;
 	}
 
-	//Needs array with length 5 as input
-	//In bookAmounts[0] should be the amount of books of type 1 etc.
+	//bookAmounts[i] has to contain the amount of books of type i + 1
 	public static double optimize(int[] bookAmounts) {
 
-		//Dividing the books in different sets of size 5, size 4, etc.
-		//General idea: Get as many 5 sets as possible, then as many 4 sets as possible, etc.
+		//Divide books into sets as large as possible
 		Arrays.sort(bookAmounts);
 
 		int[] divisions = new int[5];
@@ -36,9 +33,7 @@ public class BookOptimizer {
 			}
 		}
 
-		//Merging 5 and 3 sets to 2 new 4 sets (Like in the given example that's always superior)
-		//This is possible, because in the 5 set there are always numbers not existing in the 3 set,
-		//so one of these numbers can be given to the 3 set
+		//Merge 5 and 3 sets to 2 new 4 sets
 		while (divisions[0] > 0 && divisions[2] > 0) {
 			divisions[0]--;
 			divisions[2]--;
